@@ -1,3 +1,9 @@
+// Importing frameworks and modules
+const express = require("express");
+const http = require("http");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
 //Env variables for dev
 if (process.env.NODE_ENV != "production") {
   require("dotenv").config({
@@ -5,12 +11,11 @@ if (process.env.NODE_ENV != "production") {
   });
 }
 
-// Importing frameworks and modules
-const express = require("express");
-const http = require("http");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+//Import routes from  modules
+const TodoRoutes = require("./src/modules/todoModule/routes");
 
+//Init PORT
+const PORT = process.env.PORT;
 //Error Handler
 const errorHandler = require("./src/middlewares/errorHandler");
 
@@ -35,9 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 //APP routes
-app.get("/", (req, res, next) => {
-  res.send("Hell");
-});
+app.use("/api/v1", TodoRoutes);
 
 //Error Handler Middleware
 app.use(errorHandler);

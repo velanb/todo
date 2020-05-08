@@ -42,14 +42,13 @@ exports.createTodoService = async (todoObject) => {
 exports.updateTodoService = async (id, updateTodoObj) => {
   try {
     updateTodoObj.updatedAt = Date.now();
-    let pizzaData = await todoModel.findOneAndUpdate(
+    let todoData = await todoModel.findOneAndUpdate(
       { todoId: id },
       updateTodoObj
     );
-    let todo = await todoModel.find();
     let responseObject = await Object.freeze({
       success: true,
-      data: pizzaData,
+      data: todoData,
       message: `Todo updated successfully`,
       status: 201,
     });

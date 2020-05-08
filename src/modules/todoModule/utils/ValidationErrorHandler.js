@@ -1,7 +1,7 @@
 const ErrorHandler = require("./TodoError");
 
-exports.validationErrorHandler = async (err) => {
-  if (error.name == "ValidationError") {
+exports.validationErrorHandler = async (error) => {
+  if (error && error.name == "ValidationError") {
     return (returnObj = {
       message: error.message,
       status: 206,

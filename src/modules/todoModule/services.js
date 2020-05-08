@@ -6,6 +6,7 @@ const uniqid = require("uniqid");
 
 //Error handlers
 const { TodoServiceError } = require("./utils/TodoError");
+const { validationErrorHandler } = require("./utils/ValidationErrorHandler");
 
 exports.getTodosService = async () => {
   try {
@@ -34,7 +35,7 @@ exports.createTodoService = async (todoObject) => {
     });
     return responseObject;
   } catch (error) {
-    throw new TodoServiceError(error.message);
+    return validationErrorHandler(error);
   }
 };
 
@@ -54,14 +55,12 @@ exports.updateTodoService = async (id, updateTodoObj) => {
     });
     return responseObject;
   } catch (error) {
-    throw new TodoServiceError(error.message);
+    return validationErrorHandler(error);
   }
 };
 
 exports.deleteTodoService = async (id) => {
   try {
-    let todoId = await uniqid(`order-`);
-    let spreadObj = await Object.assign({ todoId }, todoObject);
     let todo = await todoModel.findOneAndDelete({ todoId: id });
     let responseObject = await Object.freeze({
       success: true,
@@ -71,6 +70,6 @@ exports.deleteTodoService = async (id) => {
     });
     return responseObject;
   } catch (error) {
-    throw new TodoServiceError(error.message);
+    return validationErrorHandler(error);
   }
 };

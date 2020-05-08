@@ -31,7 +31,7 @@ let todoSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  comletedAt: {
+  completedAt: {
     type: Date,
     default: null,
   },

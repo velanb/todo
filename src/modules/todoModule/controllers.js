@@ -5,14 +5,13 @@ const {
   updateTodoService,
   deleteTodoService,
 } = require("./services");
-const { TodoControllerError } = require("./utils/TodoError");
 
 exports.getTodos = async (req, res, next) => {
   try {
     let todoList = await getTodosService();
     res.status(todoList.status).json(todoList);
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
@@ -22,7 +21,7 @@ exports.createTodo = async (req, res, next) => {
     let todoList = await createTodoService(todoObject);
     res.status(todoList.status).json(todoList);
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
@@ -33,7 +32,7 @@ exports.updateTodo = async (req, res, next) => {
     let todoList = await updateTodoService(todoId, todoUpdateObject);
     res.status(todoList.status).json(todoList);
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
@@ -43,6 +42,6 @@ exports.deleteTodo = async (req, res, next) => {
     let todoList = await deleteTodoService(todoId);
     res.status(todoList.status).json(todoList);
   } catch (error) {
-    next(err);
+    next(error);
   }
 };

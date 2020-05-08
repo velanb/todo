@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 //APP routes
-app.use("/api/v1", TodoRoutes);
+app.use("/api/todo", TodoRoutes);
 
 //Error Handler Middleware
 app.use(errorHandler);

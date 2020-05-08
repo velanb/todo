@@ -11,10 +11,10 @@ const {
 
 router.route("/getTodos").get(getTodos);
 
-router.route("/createTodo").post(createTodo);
+router.route("/addTodo").post(createTodo);
 
-router.route("/updateTodo").put(deleteTodo);
+router.route("/updateTodo/:todoId").put(updateTodo);
 
-router.route("/deleteTodo").delete(updateTodo);
+router.route("/deleteTodo/:todoId").delete(deleteTodo);
 
 module.exports = router;
